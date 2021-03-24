@@ -6,9 +6,58 @@ import "firebase/database";
 import "firebase/firebase-storage";
 
 class Modal extends React.Component {
+  state = {
+    user: {
+      photoURL: "",
+      displayName: "",
+    },
+    txt: "",
+    uploadValue: 0,
+  };
   componentDidMount() {
     M.AutoInit();
+    firebase.auth().onAuthStateChanged((user) => {
+      this.setState({ user });
+    });
   }
+
+  handleChange = (e) => {
+    this.setState({ txt: e.target.value });
+  };
+
+  handleUpload = (e) => {
+    e.preventDefault();
+
+    const file = e.target.files[0];
+    const storageRef = firebase.storage().ref(`fotos/${file.name}`);
+    const task = storageRef.put(file);
+
+    task.on(
+      "state_changed",
+      (snapshot) => {
+        let percentage =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        this.setState({ uploadValue: percentage });
+      },
+      (error) => {
+        console.log(error.message);
+      },
+      () => {
+        const record = {
+          avatar: this.state.user.photoURL,
+          nombre: this.state.user.displayName,
+          txt: this.state.txt,
+          pic: task.snapshot.metadata.fullPath,
+        };
+
+        const db = firebase.database();
+        const dbRef = db.ref("pictures");
+        const newPicture = dbRef.push();
+        newPicture.set(record);
+      }
+    );
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -24,8 +73,8 @@ class Modal extends React.Component {
           <div className="modal-content">
             <h4>Posteá en Truchigram</h4>
             <div className="chip">
-              <img src="https://lh4.googleusercontent.com/-cK0jvQHC8ro/AAAAAAAAAAI/AAAAAAABbJk/c8c3cA-ztl0/photo.jpg" />
-              Jonatan Ariste
+              <img src={this.state.user.photoURL} alt="User Image" />
+              {this.state.user.displayName}
             </div>
 
             <div className="row">
@@ -36,9 +85,13 @@ class Modal extends React.Component {
                     <textarea
                       id="icon_prefix2"
                       className="materialize-textarea"
+                      onChange={this.handleChange}
                     />
                     <label htmlFor="icon_prefix2">Mensaje</label>
-                    <FileUpload />
+                    <FileUpload
+                      onUpload={this.handleUpload}
+                      uploadValue={this.state.uploadValue}
+                    />
                   </div>
                 </div>
               </form>
