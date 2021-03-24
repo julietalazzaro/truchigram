@@ -5,7 +5,11 @@ import firebase from "firebase/app";
 import "firebase/auth";
 
 class Home extends React.Component {
-  state = { user: null };
+  state = {
+    user: null,
+    email: "",
+    pass: "",
+  };
 
   componentWillMount() {
     firebase.auth().onAuthStateChanged((user) => {
@@ -27,6 +31,26 @@ class Home extends React.Component {
       })
       .catch((error) => console.log(error.code));
   }
+
+  handleEntrar = () => {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(this.state.email, this.state.pass)
+      .catch((error) => console.log(error.message));
+  };
+
+  handleRegistrar = () => {
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(this.state.email, this.state.pass)
+      .catch((error) => console.log(error.message));
+  };
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
 
   render() {
     return (
@@ -58,6 +82,40 @@ class Home extends React.Component {
                   >
                     Logear con Google
                   </button>
+                  <br />
+                  <br />
+                  <div className="row">
+                    <div className="input-field col s12">
+                      <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        onChange={this.handleChange}
+                      />
+                      <label htmlFor="email">Email</label>
+                    </div>
+                    <div className="input-field col s12">
+                      <input
+                        id="pass"
+                        name="pass"
+                        type="password"
+                        onChange={this.handleChange}
+                      />
+                      <label for="password">Password</label>
+                    </div>
+                    <button
+                      className="waves-effect waves-light btn"
+                      onClick={this.handleEntrar}
+                    >
+                      Entrar
+                    </button>
+                    <button
+                      className="waves-effect waves-light btn"
+                      onClick={this.handleRegistrar}
+                    >
+                      Registrate
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

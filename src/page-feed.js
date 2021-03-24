@@ -19,6 +19,14 @@ class Feed extends React.Component {
       this.setState({ user });
       if (this.state.user) {
         this.props.history.push("/feed");
+        if (!this.state.user.photoURL)
+          this.setState({
+            user: {
+              displayName: user.email.substr(0, user.email.search("@")),
+              photoURL:
+                "https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png",
+            },
+          });
       } else {
         this.props.history.push("/");
       }

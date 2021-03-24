@@ -13,6 +13,7 @@ class Nav extends React.Component {
       })
       .catch((error) => console.log(`Error ${error.code}: ${error.message}`));
   }
+
   render() {
     return (
       <React.Fragment>
@@ -28,7 +29,9 @@ class Nav extends React.Component {
               <div className="col s2 l1 offset-s5 offset-l7 right-align flex">
                 <ul id="dropdown2" className="dropdown-content">
                   <li>
-                    <a onClick={this.handleLogout}>logout</a>
+                    <a onClick={this.handleLogout} href="/">
+                      logout
+                    </a>
                   </li>
                 </ul>
                 <a
