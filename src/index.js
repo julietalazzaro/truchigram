@@ -24,8 +24,8 @@ firebase.initializeApp({
   storageBucket: "truchigram-julieta.appspot.com",
   messagingSenderId: "556206234462",
   appId: "1:556206234462:web:e56b09bb299d46cd990dcf",
-  measurementId: "G-4PRJEHBSD5"
-};
+  measurementId: "G-4PRJEHBSD5",
+});
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
