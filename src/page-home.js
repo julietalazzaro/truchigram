@@ -1,5 +1,6 @@
 import React from "react";
 import insta from "./instashot.png";
+import jony from "./home-jony.jpg";
 import firebase from "firebase/app";
 import "firebase/auth";
 
@@ -21,7 +22,8 @@ class Home extends React.Component {
       .auth()
       .signInWithPopup(provider)
       .then((result) => {
-        console.log("entro el Mr./Ms", result.user.email);
+        // console.log("entro el Mr./Ms", result.user.email);
+        this.props.history.push("/feed");
       })
       .catch((error) => console.log(error.code));
   }
@@ -34,16 +36,13 @@ class Home extends React.Component {
             <div className="col m4 l5 offset-l1 off">
               <img alt="" src={insta} />
             </div>
-            <div className="col m3 l3 top120">
+            <div className="col offset-s2 s8 m4 l3 top120">
               <div className="card">
-                <div className="card-image">
-                  <span className="card-title">Card Title</span>
-                </div>
                 <div className="card-content center">
                   <img
                     alt="Jonatan Ariste"
                     className="circle homePic"
-                    src="https://scontent-sea1-1.cdninstagram.com/vp/d48e1e31249f9224400253b4cf32599e/5D53373F/t51.2885-19/s150x150/54512168_825848254460977_4462647328951500800_n.jpg?_nc_ht=scontent-sea1-1.cdninstagram.com"
+                    src={jony}
                   />
                   <p>
                     Bienvenidos a <strong>Truchigram</strong>, esta app# esta
@@ -52,7 +51,7 @@ class Home extends React.Component {
                     lo fácil que resulta para arrancar a crear.
                   </p>
                 </div>
-                <div className="card-action right-align">
+                <div className="card-action center-align">
                   <button
                     className="waves-effect waves-light btn"
                     onClick={this.handleAuth}

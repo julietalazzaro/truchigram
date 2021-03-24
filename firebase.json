@@ -1,6 +1,5 @@
 {
   "hosting": {
-    "site": "truchigram-julieta",
     "public": "public",
     "ignore": [
       "firebase.json",

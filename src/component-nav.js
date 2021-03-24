@@ -7,11 +7,11 @@ class Nav extends React.Component {
     firebase
       .auth()
       .signOut()
-      .then(result => {
+      .then((result) => {
         console.log("Desconectamos guacho");
         window.location.href = "/";
       })
-      .catch(error => console.log(`Error ${error.code}: ${error.message}`));
+      .catch((error) => console.log(`Error ${error.code}: ${error.message}`));
   }
   render() {
     return (

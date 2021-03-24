@@ -1,5 +1,5 @@
 body {
-  background: #fafafa
+  background: #fafafa;
 }
 
 img {
@@ -15,7 +15,6 @@ img {
   justify-content: center;
   align-items: center;
   height: 80px;
-
 }
 
 .vh100 {
@@ -31,7 +30,7 @@ img {
 
 .homePic {
   width: 140px;
-
+  margin-bottom: 20px;
 }
 
 .cardPic {
@@ -40,7 +39,7 @@ img {
 
 .nav {
   height: 80px;
-  border-bottom: 1px solid rgba(0, 0, 0, .0975);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.0975);
   background: white;
   position: fixed;
   width: 100%;
@@ -49,26 +48,22 @@ img {
 
 .logo {
   width: 40px;
-
 }
 
 .margin0 {
   margin-bottom: 0px !important;
-
 }
 
 .border-right {
-  border-right: 1px solid rgba(0, 0, 0, .0975);
-
+  border-right: 1px solid rgba(0, 0, 0, 0.0975);
 }
 
 .inline {
-  display: inline-block
+  display: inline-block;
 }
 
 .fix-nombre {
   height: 44px;
-
 }
 
 .cardName {
@@ -78,7 +73,7 @@ img {
 .FAB {
   position: fixed !important;
   bottom: 100px;
-  right: 100px
+  right: 100px;
 }
 
 .lo {
@@ -101,15 +96,14 @@ img {
   margin-top: 100px;
 }
 
-
 @media only screen and (max-device-width: 480px),
-only screen and (min-device-width: 560px) and (max-device-width: 1136px) {
+  only screen and (min-device-width: 560px) and (max-device-width: 1136px) {
   .off {
     display: none;
   }
 
   .top120 {
-    margin-top: 0px
+    margin-top: 0px;
   }
 
   .FAB {
@@ -122,6 +116,6 @@ only screen and (min-device-width: 560px) and (max-device-width: 1136px) {
   }
 
   .modal-content h4 {
-    font-size: 22px
+    font-size: 22px;
   }
 }

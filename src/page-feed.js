@@ -19,6 +19,8 @@ class Feed extends React.Component {
       this.setState({ user });
       if (this.state.user) {
         this.props.history.push("/feed");
+      } else {
+        this.props.history.push("/");
       }
     });
   }

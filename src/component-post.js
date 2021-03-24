@@ -28,14 +28,14 @@ class Post extends React.Component {
         <div className="card">
           <div className="card-content">
             <div className="row margin0">
-              <div className="col s2 l1 valign-wrapper">
+              <div className="col s3 l2 valign-wrapper">
                 <img
                   src={this.props.avatar}
                   alt={this.props.nombre}
                   className="circle cardPic inline"
                 />
               </div>
-              <div className="col s10 l6 valign-wrapper fix-nombre">
+              <div className="col s9 l6 valign-wrapper fix-nombre">
                 <p className="inline cardName">{this.props.nombre}</p>
               </div>
             </div>
